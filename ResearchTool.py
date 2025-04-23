@@ -49,7 +49,7 @@ def translater(text:str, lang:str, model) -> str:
         3. Ensure grammatical correctness in the translated text.
         4. If the text is already in the target language, simply return it as is.
         5. Please strictly avoid adding any additional commentary or explanations like "Here is the translation" or "This is what it means".
-        6. Do not include any extra information or context that is not part of the original text.s
+        6. Do not include any extra information or context that is not part of the original text.
 
         Here is the text you need to translate:
 
