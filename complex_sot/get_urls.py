@@ -14,7 +14,7 @@ def get_urls(query: str) -> List[str] | str:
     using the TavilySearchResults tool.
     """
     results = search_tool.run("stackoverflow.com " + query)
-    urls = [result['url'] for result in results if "stackoverflow.com" in result['url']]
+    urls = [result['url'] for result in results if "https://stackoverflow.com/questions/" in result['url']]
     return urls
 
 get_url_tool = StructuredTool.from_function(

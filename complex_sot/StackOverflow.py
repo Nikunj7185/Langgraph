@@ -96,7 +96,6 @@ def tool_fn(urls: List[str]):  # Annotated for use with args_schema
             'question': title,
             'answers': formatted_answers[:4]
         })
-
     return results
 
 
