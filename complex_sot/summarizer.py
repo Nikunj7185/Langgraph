@@ -26,14 +26,12 @@ Respond with a list of the most relevant questions (1-5) that are semantically s
 Questions:
 {[q['question'] for q in questions]}
 
-Just return the relevant questions as a Python list of strings.
+Just return the relevant questions as a new line character seperated list.
+If no questions are relevant, return an empty string.
 """
-    response = model.invoke([HumanMessage(content=prompt)])
-    try:
-        relevant_titles = eval(response.content)
-    except:
-        return questions  # Fallback
-    return [q for q in questions if q['question'] in relevant_titles]
+    response = model.invoke([HumanMessage(content=prompt)]).content
+    relevant_questions = response.strip().split('\n')
+    return [q for q in questions if q['question'] in relevant_questions]
 
 # Main summarization function
 def summarize_answers(query: str, stackoverflow_data: List[Dict]) -> str:
