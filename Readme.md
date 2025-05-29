@@ -129,5 +129,5 @@ There are 3 tools that I created for making this StackOverflow agent. They are :
 ## How it workes  
 
 ### Overall structure:
-Below is the overall structure of the graph :
+Below is the overall structure of the graph :  
 ![Alt text](image.png "Graph structure")
