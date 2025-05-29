@@ -96,6 +96,7 @@ agent = Agent(model, [get_url_tool, Stack_overflow_tool, StackOverflowSummarizer
 messages = HumanMessage(content="How to reverse a string in Python?")
 for event in agent.graph.stream({"messages": messages}):
     print(event)
+```
 
 ###Example Output:  
 ``` {'llm': {'messages': [AIMessage(content='', additional_kwargs={'tool_calls': [{'id': 'call_q580', 'function': {'arguments': '{"query":"reverse string in Python"}', 'name': 'get_url_tool'}, 'type': 'function'}]}, response_metadata={'token_usage': {'completion_tokens': 18, 'prompt_tokens': 591, 'total_tokens': 609, 'completion_time': 0.091476303, 'prompt_time': 0.037600399, 'queue_time': 0.053348040000000006, 'total_time': 0.129076702}, 'model_name': 'llama-3.3-70b-versatile', 'system_fingerprint': 'fp_3f3b593e33', 'finish_reason': 'tool_calls', 'logprobs': None}, id='run-b79f1c66-b710-43ab-8927-fdca3975bca2-0', tool_calls=[{'name': 'get_url_tool', 'args': {'query': 'reverse string in Python'}, 'id': 'call_q580', 'type': 'tool_call'}], usage_metadata={'input_tokens': 591, 'output_tokens': 18, 'total_tokens': 609})]}}
