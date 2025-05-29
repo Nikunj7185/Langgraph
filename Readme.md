@@ -1,5 +1,12 @@
 # Intelligent Stack Overflow Query Agent
 
+---
+
+**IMPORTANT NOTICE:**
+This readme currently only contains discription about the agent in the folder `complex_sot`.
+
+---
+
 This project implements an intelligent agent framework designed to interactively query Stack Overflow for programming questions and retrieve refined answers. It uses a combination of large language models (LLMs) and external tools for search and summarization, orchestrated through a state machine graph architecture using LangGraph.
 
 ---
@@ -10,11 +17,8 @@ This project implements an intelligent agent framework designed to interactively
 - [Architecture](#architecture)
 - [Installation](#installation)
 - [Usage](#usage)
-- [How It Works](#how-it-works)
 - [Components](#components)
-- [Extending the Agent](#extending-the-agent)
-- [Troubleshooting](#troubleshooting)
-- [License](#license)
+- [How It Works](#how-it-works)
 
 ---
 
@@ -109,5 +113,21 @@ Calling tool: StackOverflowSummarizer
 {'StackOverflowSummarizer': {'messages': [ToolMessage(content='The most helpful and highly upvoted answers for the user query "How to reverse a string in Python?" are:\n\n**The most popular and concise solution:**\nUsing slicing with a step of -1: `s[::-1]`. This method is not only efficient but also easy to read and understand.\n\n**Alternative solutions:**\nThere are a few alternative solutions that exist, including:\n\n* Iterating over the string in reverse order using a for loop and printing each character.\n* Using the `reversed` function and joining the reversed characters into a string.\n\n**Notable mentions:**\nSome answers provide additional information, such as benchmarks and explanations for why certain solutions may not be suitable for all cases.\n\n**Multi-solution answers:**\nA few answers provide multiple solutions, including both concise and readable solutions, as well as slower but more readable solutions.\n\nOverall, the most popular and concise solution is using slicing with a step of -1, but there are alternative solutions available for those who prefer a different approach.', name='StackOverflowSummarizer', id='c89f3e4c-06e0-4401-a3bd-f7776ab47978', tool_call_id='synthetic-StackOverflowSummarizer-synthetic-stack_overflow_tool-call_q580')]}}
 {'refine_answer': {'messages': [AIMessage(content='**Reversing a String in Python: A Comprehensive Guide**\n\nThe most efficient and widely accepted method to reverse a string in Python is by utilizing slicing with a step of -1: `s[::-1]`. This approach is not only concise but also highly readable and efficient.\n\n### Alternative Methods\n\nFor those who prefer alternative approaches, the following methods are available:\n\n1.  **Iteration and Concatenation**: You can iterate over the input string in reverse order using a for loop and concatenate each character to form the reversed string.\n2.  **Using the `reversed` Function**: The `reversed` function can be used to reverse the characters in the string, and then the `join` method can be employed to concatenate the reversed characters into a single string.\n\n### Notable Considerations\n\nSome notable points to consider when reversing a string in Python include:\n\n* **Performance**: The slicing method (`s[::-1]`) is generally the most efficient approach, especially for large strings. Other methods, such as iteration and concatenation, may be slower due to the overhead of repeated concatenation operations.\n* **Readability**: While the slicing method is concise, other approaches, such as using the `reversed` function, may be more readable and easier to understand for those unfamiliar with slicing syntax.\n\n### Example Code\n\nHere are some example code snippets demonstrating the different methods:\n\n* **Slicing Method**: `reversed_s = s[::-1]`\n* **Iteration and Concatenation**: \n```python\nreversed_s = ""\nfor char in s:\n    reversed_s = char + reversed_s\n```\n* **Using the `reversed` Function**: \n```python\nreversed_s = "".join(reversed(s))\n```\n\nIn conclusion, while the slicing method (`s[::-1]`) is the most popular and efficient approach to reversing a string in Python, alternative methods are available for those who prefer a different approach. By considering performance, readability, and personal preference, you can choose the best method for your specific use case.', additional_kwargs={}, response_metadata={}, id='2053578c-2016-4374-aa9c-21217d1e6dd7')]}}
 ```
+## Components  
+### Tools
+There are 3 tools that I created for making this StackOverflow agent. They are :
+1. **get_url_tool** - Fetches relevant Stack Overflow URLs based on the query.
+2. **Stack_overflow_tool** - Retrieves detailed question and answer content.
+3. **StackOverflowSummarizer** - Summarizes retrieved Stack Overflow content into concise answers.
+
+### Agent Class
+
+- Manages model, tools, and the state graph workflow.
+- Defines state nodes and conditional transitions.
+- Handles message passing and tool calling.
 
 ## How it workes  
+
+### Overall structure:
+Below is the overall structure of the graph :
+![Alt text](image.png "Graph structure")
