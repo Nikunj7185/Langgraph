@@ -19,6 +19,7 @@ This project implements an intelligent agent framework designed to interactively
 - [Usage](#usage)
 - [Components](#components)
 - [How It Works](#how-it-works)
+- [LangGraph-Report](#LangGraph-report)
 
 ---
 
@@ -131,3 +132,148 @@ There are 3 tools that I created for making this StackOverflow agent. They are :
 ### Overall structure:
 Below is the overall structure of the graph :  
 ![Alt text](image.png "Graph structure")
+
+
+## LangGraph-report
+
+### 1. Introduction
+
+**Overview of Framework:**  
+LangGraph is a framework designed for building stateful, multi-agent applications using Large Language Models (LLMs). It allows developers to define custom workflows as a graph of nodes (functions or agents), enabling dynamic control flow, memory sharing, and advanced reasoning patterns.
+
+**Purpose of the Report:**  
+To analyze LangGraph's capabilities across various dimensions—features, memory, tool integration, documentation, workflow design, and reasoning tools—and evaluate its utility for complex AI applications.
+
+### 2. Features Comparison
+
+**Cloud-hosted Version Availability:**  
+LangGraph can be deployed on cloud platforms and used within LangChain’s cloud environment.
+
+**Dockerized Container Version:**  
+LangGraph projects can be containerized for reproducible deployment.
+
+```dockerfile
+# Sample Dockerfile
+FROM python:3.10-slim
+WORKDIR /app
+COPY . .
+RUN pip install -r requirements.txt
+CMD ["python", "main.py"]
+```
+
+**GUI and Visualization Capabilities:**  
+While LangGraph itself is code-centric, integration with LangSmith allows graphical visualization of workflows.
+
+**Commercial License Details:**  
+Open source (MIT), with commercial options available via LangChain Inc.
+
+### 3. Memory Management
+
+**Built-in Conversational Memory:**  
+LangGraph supports shared memory for agents across a graph.
+
+```python
+from langgraph.graph import StateGraph
+from langchain.memory import ConversationBufferMemory
+
+memory = ConversationBufferMemory(return_messages=True)
+builder = StateGraph()
+builder.add_memory(memory)
+```
+
+**Session Storage:**  
+Persistent session memory can be integrated using Redis or vector stores.
+
+**User Memory:**  
+Agents can access global or scoped memory.
+
+### 4. Web Search Tools
+
+**Tools Library:**  
+Supports LangChain tools such as SerpAPI and Tavily.
+
+```python
+from langchain.tools import Tool
+from langchain.agents import initialize_agent
+
+search_tool = Tool.from_function("search", func=my_web_search_func, description="Performs web search")
+agent = initialize_agent([search_tool], llm=llm)
+```
+
+**Configuration Options:**  
+Tools can be customized using settings in code.
+
+**Performance and Accuracy:**  
+Tools can be benchmarked using observability platforms (e.g., LangSmith).
+
+### 5. Documentation and Code
+
+**Versioning for Implementation:**  
+Code can be tracked using Git.
+
+**Ability to Document the Code:**  
+Docstrings and type hints support documentation.
+
+```python
+def summarize(text: str) -> str:
+    """Summarize the given text."""
+    return llm.predict(text)
+```
+
+### 6. Toolkits and APIs
+
+**Prebuilt Toolkits and Their Ratings:**  
+Includes tools for code, math, web, and more.
+
+**API Support and Usage:**  
+Supports async Python APIs.
+
+```python
+from langgraph.graph import StateGraph
+
+async def my_node(state):
+    # Do something asynchronously
+    return new_state
+```
+
+**Observability Platforms Compatibility:**  
+LangGraph works well with LangSmith for tracking agent behavior.
+
+### 7. Workflow Analysis
+
+**Support for Workflow Design:**  
+LangGraph defines workflows as directed graphs.
+
+```python
+from langgraph.graph import StateGraph
+
+graph = StateGraph()
+graph.add_node("start", start_function)
+graph.add_node("analyze", analyze_function)
+graph.set_entry_point("start")
+graph.add_edge("start", "analyze")
+```
+
+### 8. Reasoning and Thinking Tools
+
+**Analysis of Reasoning Tools:**  
+LangGraph enables combining multiple agents for collaborative reasoning (e.g., Tree of Thoughts, ReAct).
+
+```python
+from langchain.agents import Tool, AgentExecutor
+
+tools = [Tool(name="math", func=do_math)]
+agent = AgentExecutor.from_agent_and_tools(agent=react_agent, tools=tools)
+```
+
+### 9. Conclusion
+
+**Summary of Findings:**  
+LangGraph is well-suited for building advanced workflows with multiple interacting agents. It handles memory, tool orchestration, and dynamic logic with ease.
+
+**Recommendations for Further Exploration:**  
+- Deeper integration with vector DBs like FAISS
+- Use LangChain Expression Language (LCEL)
+- Deploy with LangSmith for production monitoring
+- Compare with frameworks like CrewAI and AutoGen
+
