@@ -104,7 +104,7 @@ def tool_fn(urls: List[str]):
         List[dict]: A list containing questions with their top answers.
     """
     results = []
-
+    # urls=urls['urls']
     for url in urls:
         question_id = extract_question_id(url)
         if question_id is None:

@@ -31,6 +31,7 @@ def get_urls(query: str) -> List[str] | str:
 
     # Filter results to include only valid Stack Overflow question URLs
     urls = [result['url'] for result in results if "https://stackoverflow.com/questions/" in result['url']]
+    print(urls)
     return urls
 
 # Wrap the get_urls function as a LangChain StructuredTool

@@ -32,20 +32,20 @@ def get_urls(query: str) -> dict:
         return {"error": str(e)}
 
 @mcp.tool()
-def stack_overflow(urls: list) -> dict:
+def stack_overflow(urls: dict) -> dict:
     try:
         logger.info(f"stack_overflow called with {len(urls)} URLs")
         result = Stack_overflow_tool(urls)
-        return result  # Assuming this already returns a dict
+        return {"result":result}  # Assuming this already returns a dict
     except Exception as e:
         logger.error(f"stack_overflow failed: {str(e)}\n{traceback.format_exc()}")
         return {"error": str(e)}
 
 @mcp.tool()
-def summarize_stack_overflow(answers: dict) -> dict:
+def summarize_stack_overflow(query: str, answers: dict) -> dict:
     try:
         logger.info("summarize_stack_overflow called")
-        result = StackOverflowSummarizer(answers)
+        result = StackOverflowSummarizer.invoke({"query": query, "stackoverflow_data": answers['result']})
         return {"summary": result}
     except Exception as e:
         logger.error(f"summarize_stack_overflow failed: {str(e)}\n{traceback.format_exc()}")
