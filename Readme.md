@@ -279,7 +279,7 @@ LangGraph is well-suited for building advanced workflows with multiple interacti
 - Compare with frameworks like CrewAI and AutoGen
 
 
-## Model Context Protocol (MCP) 
+## Model Context Protocol (MCP)
 
 ### 1. Introduction
 
