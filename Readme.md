@@ -18,9 +18,9 @@ This project implements an intelligent agent framework designed to interactively
 - [Installation](#installation)
 - [Usage](#usage)
 - [Components](#components)
-- [How It Works](#how-it-works)
-- [LangGraph-Report](#LangGraph-report)
-- [Model Context Protocol (MCP)](#model-context-protocol-(mcp))
+- [How it Works](#how-it-works)
+- [LangGraph-Report](#langgraph-report)
+- [Model Context Protocol (MCP)](#model-context-protocol-mcp)
 
 ---
 
@@ -128,7 +128,7 @@ There are 3 tools that I created for making this StackOverflow agent. They are :
 - Defines state nodes and conditional transitions.
 - Handles message passing and tool calling.
 
-## How it workes  
+## How it works  
 
 ### Overall structure:
 Below is the overall structure of the graph :  
