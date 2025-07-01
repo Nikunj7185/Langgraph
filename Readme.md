@@ -20,7 +20,7 @@ This project implements an intelligent agent framework designed to interactively
 - [Components](#components)
 - [How It Works](#how-it-works)
 - [LangGraph-Report](#LangGraph-report)
-- [Model Context Protocol (MCP)](#Model-Context-Protocol-(MCP))
+- [Model Context Protocol (MCP)](#model-context-protocol-(mcp))
 
 ---
 
