@@ -20,6 +20,7 @@ This project implements an intelligent agent framework designed to interactively
 - [Components](#components)
 - [How It Works](#how-it-works)
 - [LangGraph-Report](#LangGraph-report)
+- [Model Context Protocol (MCP)](#Model-Context-Protocol-(MCP))
 
 ---
 
@@ -276,4 +277,26 @@ LangGraph is well-suited for building advanced workflows with multiple interacti
 - Use LangChain Expression Language (LCEL)
 - Deploy with LangSmith for production monitoring
 - Compare with frameworks like CrewAI and AutoGen
+
+
+## Model Context Protocol (MCP) 
+
+### 1. Introduction
+
+**Overview**
+MCP is an open protocol that standardizes how applications provide context to LLMs. Think of MCP like a USB-C port for AI applications. Just as USB-C provides a standardized way to connect your devices to various peripherals and accessories, MCP provides a standardized way to connect AI models to different data sources and tools.
+
+**Why MCP ?**
+MCP helps you build agents and complex workflows on top of LLMs. LLMs frequently need to integrate with data and tools, and MCP provides:
+-    A growing list of pre-built integrations that your LLM can directly plug into
+-    The flexibility to switch between LLM providers and vendors
+-    Best practices for securing your data within your infrastructure
+
+**How is MCP implemented in this project ?**
+-   SERVER :
+    -    In the mcp folder, the server folder contains all the tools and the `server.py` file which is responsoble for hosting the tools on a mcp server.
+    -    As it can be seen in the `server.py` a quick server was build using `fastmcp` with the given port and host.
+    -    Then we added all three tools to the server using the `@mcp.tool()` decorator.
+    -    And then the server was run with `transport="streamable-http"`.
+    -    In short what this transport does is it makes it possible for a client to ping to the given host and port and access the resources available on the sever. Another transport that is used in testing is `transport="stdio"`. A server with this transport can be accessed only if the client is in the same directory.
 
