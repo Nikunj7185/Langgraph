@@ -296,7 +296,14 @@ MCP helps you build agents and complex workflows on top of LLMs. LLMs frequently
     -    As it can be seen in the `server.py` a quick server was build using `fastmcp` with the given port and host.
     -    Then we added all three tools to the server using the `@mcp.tool()` decorator.
     -    And then the server was run with `transport="streamable-http"`.
-    -    In short what this transport does is it makes it possible for a client to ping to the given host and port and access the resources available on the sever. Another transport that is used in testing is `transport="stdio"`. A server with this transport can be accessed only if the client is in the same directory.
+    -    In short what this transport does is it makes it possible for a client to ping to the given host and port and access the resources available on the sever. Another transport that is used in testing is `transport="stdio"`. A server with this transport can be accessed only if the client is in the same directory.  
 -   CLIENT :  
-    -   
+    -   The client[agent] is in `MCP/final.py`.
+    -   The basic Agent structure remains the same as it was in the intitial stage.
+    -   **One of the major issues i had while building the client side was not connecting to the server but in utilizing the tools**
+    -   I am still not sure as to how or why it is but the tools hosted on an mcp server cannot be directly accessed and used to make agents.
+    -   I used the langchain_mcp_adapters.
+    -   It made it easy to connect to the mcp server via - `from langchain_mcp_adapters.client import MultiServerMCPClient`
+    -   The major advantage of the library was that i could directly use `from langchain_mcp_adapters.tools import load_mcp_tools` function to load mcp tools as langchain tools so that i could feed them into my agent class.
+
 
