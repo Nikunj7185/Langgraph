@@ -93,11 +93,8 @@ Here is a simple usage example:
 
 ```python
 from langchain_groq import ChatGroq
-from your_agent_module import Agent, get_url_tool, Stack_overflow_tool, StackOverflowSummarizer
+from complex_sot.final import abot as agent
 from langchain_core.messages import HumanMessage
-
-model = ChatGroq(model="llama-3.3-70b-versatile")
-agent = Agent(model, [get_url_tool, Stack_overflow_tool, StackOverflowSummarizer], system="You are a helpful assistant")
 
 messages = HumanMessage(content="How to reverse a string in Python?")
 for event in agent.graph.stream({"messages": messages}):
